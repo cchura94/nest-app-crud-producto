@@ -1,0 +1,29 @@
+GET http://127.0.0.1:3000/producto
+
+###
+POST http://127.0.0.1:3000/producto
+Content-Type: application/json
+
+{
+    "nombre": "PARLANTES",
+    "precio": 59,
+    "cantidad": 20,
+    "imagen": "NINGUNO"
+}
+
+### mostrar producto
+GET http://127.0.0.1:3000/producto/4
+
+### Modificar
+PATCH http://127.0.0.1:3000/producto/4
+Content-Type: application/json
+
+{
+    "nombre": "PARLANTES MARCA ABC",
+    "precio": "159",
+    "cantidad": 15,
+    "imagen": "NINGUNO"
+}
+
+### elimniar
+DELETE http://127.0.0.1:3000/producto/3

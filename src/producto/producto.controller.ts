@@ -1,32 +1,37 @@
-import { Controller, Delete, Get, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
+import { ProductoService } from "./producto.service";
 
 @Controller("/producto")
 export class ProductoController{
 
+    constructor(private productoService: ProductoService){
+
+    }
+
     @Get("")
     funListar(){
-        return "Lista de Productos"
+        return this.productoService.getProductos()
     }
 
     @Post()
-    funGuardar(){
-        return "Guardar Producto"
+    funGuardar(@Body() datos){
+        return this.productoService.sendGuardarProducto(datos);
     }
 
     @Get(":id")
-    funMostrar(){
-        return "Mostrando Datos"
+    funMostrar(@Param('id')id: number){
+        return this.productoService.getMostrar(id);
     }
 
     @Patch(":id")
-    funModificar(){
+    funModificar(@Param('id')id: number, @Body() datos){
 
-        return "Modificar Producto"
+        return this.productoService.funActualizar(id, datos);
         
     }
 
     @Delete(":id")
-    funEliminar(){
-        return "Eliminar Producto"
+    funEliminar(@Param('id')id: number){
+        return this.productoService.funEliminar(id)
     }
 }
